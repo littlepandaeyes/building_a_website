@@ -1,0 +1,30 @@
+{
+  "name": "week10_json_demo",
+  "version": "1.0.0",
+  "description": "Demo of making json file",
+  "keywords": [
+    "test",
+    "scripts",
+    "node.js",
+    "express.js",
+    "webserver"
+  ],
+  "license": "MIT",
+  "author": "grsaraha",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "discord.js": "^14.21.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

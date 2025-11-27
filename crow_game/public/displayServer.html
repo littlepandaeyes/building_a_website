@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Server Log of Sightings</title>
+    <meta name="author" content="Sarah-Anne Green">
+
+    <!--Name: Sarah-Anne Green
+        Assignment 4 - Javascript API Server
+        August 10/2025
+        Objective: To use the form from Assignment 3 and transform it into an
+        interactive web application by connecting it to a server API. Using
+        CRUD operations, and fetch(), users can add, view, update, and remove 
+        entries from a server-based database. -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js" defer></script>
+    <!-- make readme -->
+</head>
+
+<body>
+    <h1>Wildlife Tracker - Server Side</h1>
+
+    <div class="buttons">
+        <button type="button" id="resetDbButton">Reset Database</button>
+        <button type="button" id="returnToForm">Return to Form</button>
+    </div>
+    <!--Form Start-->
+    <form id="sightingForm" role="form" aria-labelledby="formTitle" novalidate>
+
+        <!--record ID-->
+        <input type="hidden" id="sightingId" name="id">
+
+        <!--Form input field: Name-->
+        <label for="rangerName">Ranger Name:</label>
+        <input type="text" id="rangerName" name="rangerName" placeholder="Cheif Panda" required autocomplete="name"
+            aria-required="true" pattern="^[A-Z][A-Za-z ]{2,15}$" /> <!--validation: JS nameRegex-->
+
+        <!--Form input field: ID number-->
+        <label for="rangerID">Ranger ID Number:</label>
+        <input type="number" id="rangerID" name="rangerID" placeholder="Required" required autocomplete="off"
+            aria-required="true" min="1000" max="9999" pattern="^\d{4}$" /> <!--validation: JS idRegex-->
+
+        <!--Form input field: Date-->
+        <label for="sightingDate">Date of Sighting:</label>
+        <input type="date" id="sightingDate" name="sightingDate" required aria-required="true" />
+        <!--validation: dateInput, today-->
+
+        <!--Form input field: Animal Short Answer-->
+        <label for="animal">Animal:</label>
+        <input type="text" id="animal" name="animal" placeholder="Use common name, rather then scientific name please."
+            required autocomplete="off" aria-required="true" list="animalList" pattern="^[A-Z][a-z ]{2,15}$" />
+        <!--validation: JS AnimalRegex-->
+
+        <!--Form input field: Location Dropdown-->
+        <label for="location">Location Spotted:</label>
+        <select id="location" name="location" required aria-required="true">
+            <option>Looking out the Ranger Windows</option>
+            <option>Forest Edge</option>
+            <option>Riverbank</option>
+            <option>Mountain Trail</option>
+            <option>Campground</option>
+        </select> <!--validation: always valid via default selection-->
+
+        <!--Form input field: Description Short Answer-->
+        <label for="description">Brief Description:</label>
+        <input type="text" id="description" name="description" placeholder="Size, colour, behaivour..." required
+            autocomplete="off" aria-required="true"> <!--validation: JS descrtRegex-->
+
+        <!--Form input field: Details Long Answer-->
+        <label for="details">Sighting Details:</label>
+        <textarea id="details" name="details" rows="5" required aria-required="true"
+            placeholder="What was it doing? Notable Details, ect..." aria-describedby="detailsHelp"></textarea>
+        <!--validation: JS detailRegex-->
+        <small id="detailsHelp">Include anything interesting or unusual.
+        </small>
+
+        <!--Form input field: Buttons-->
+        <div class="buttons">
+            <button type="button" id="resetButton">Cancel</button>
+            <button type="button" id="saveButton">Save</button>
+        </div>
+
+        <!--Messages-->
+        <div id="errorMessages" role="alert" aria-live="polite"></div>
+        <div id="savedData" aria-live="polite"></div>
+    </form>
+    <!--End of Form-->
+
+    <!--List Container for Items in Log-->
+    <section>
+        <h2>Sightings List</h2>
+        <ul id="sightingsList"></ul>
+    </section>
+
+</body>
+
+</html>

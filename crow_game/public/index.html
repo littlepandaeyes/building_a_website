@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Sighting Log</title>
+    <meta name="author" content="Sarah-Anne Green">
+
+    <!--Name: Sarah-Anne Green
+        Assignment 4 - Javascript API Server
+        August 10/2025
+        Objective: To use the form from Assignment 3 and transform it into an
+        interactive web application by connecting it to a server API. Using
+        CRUD operations, and fetch(), users can add, view, update, and remove 
+        entries from a server-based database. -->
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <!-- make readme -->
+</head>
+<body>
+    <header>
+
+        <!--Page title-->
+        <h1>Ranger's Wildlife Sighting Log</h1>
+    </header>
+    <main>
+        
+        <!--What the page wants-->
+        <h2>Please fill out the form below to report your 
+            wildlife encounter</h2>
+
+        <!--Introduction Paragraph and Saftey Warning-->
+        <p>Welcome Ranger!<br><br> 
+            Please be careful when sighting animals, not to get too close, or 
+            startle them in their habitat. If an animal is acting unusual, and 
+            you fear danger to yourself or campers, 
+            <strong>get to a safe place</strong> then 
+            <strong>radio the office immediately</strong>
+            for further instructions.
+            <br>
+            Thank you!</p>
+
+        <!--Form Start-->
+        <form id="sightingForm" role="form" aria-labelledby="formTitle" 
+        novalidate>
+            
+            <!--Form input field: Name-->
+            <label for="rangerName">Ranger Name:</label>
+            <input type="text" id="rangerName" name="rangerName"
+                    placeholder="Cheif Panda" 
+                    required
+                    autocomplete="name" 
+                    aria-required="true"
+                    pattern="^[A-Z][A-Za-z ]{2,15}$"/> <!--validation: JS nameRegex-->
+
+            <!--Form input field: ID number-->
+            <label for="rangerID">Ranger ID Number:</label>
+            <input type="number" id="rangerID" name="rangerID"
+                    placeholder="Required"
+                    required
+                    autocomplete="off"
+                    aria-required="true"
+                    min="1000" max="9999" 
+                    pattern="^\d{4}$"/> <!--validation: JS idRegex-->
+
+            <!--Form input field: Date-->
+            <label for="sightingDate">Date of Sighting:</label>
+            <input type="date" id="sightingDate" name="sightingDate"
+                    required
+                    aria-required="true"/> <!--validation: dateInput, today-->
+            
+            <!--Form input field: Animal Short Answer-->
+            <label for="animal">Animal:</label>
+            <input type="text" id="animal" name="animal"
+                    placeholder="Use common name, rather then scientific name please."
+                    required
+                    autocomplete="off"
+                    aria-required="true"                    
+                    list="animalList"
+                    pattern="^[A-Z][a-z ]{2,15}$"/> <!--validation: JS AnimalRegex-->
+
+            <!--Form input field: Animal Data List-->
+            <datalist id="animalList">
+                    <option value="Panda"></option>
+                    <option value="Deer"></option>
+                    <option value="Grizzly Bear"></option>
+                    <option value="Fox"></option>
+                    <option value="Polar Bear"></option>
+                    <option value="Moose"></option>
+                    <option value="Brown Bear"></option>                    
+                    <option value="Otter"></option>
+                    <option value="Lynx"></option>
+                    <option value="Eagle"></option>
+                    <option value="Rabbit"></option>
+                    <option value="Wolf"></option>
+            </datalist>
+
+            <!--Form input field: Location Dropdown-->
+            <label for="location">Location Spotted:</label>
+            <select id="location" name="location"
+                    required
+                    aria-required="true">
+                    <option>Looking out the Ranger Windows</option>
+                    <option>Forest Edge</option>
+                    <option>Riverbank</option>
+                    <option>Mountain Trail</option>
+                    <option>Campground</option>
+                </select> <!--validation: always valid via default selection-->
+
+            <!--Form input field: Description Short Answer-->
+            <label for="description">Brief Description:</label>
+            <input type="text" id="description" name="description"
+                    placeholder="Size, colour, behaivour..."
+                    required
+                    autocomplete="off"
+                    aria-required="true"> <!--validation: JS descrtRegex-->
+
+            <!--Form input field: Details Long Answer-->
+            <label for="details">Sighting Details:</label>
+            <textarea id="details" name="details"
+                    rows="5"
+                    required
+                    aria-required="true"
+                    placeholder="What was it doing? Notable Details, ect..." 
+                    aria-describedby="detailsHelp"></textarea>  <!--validation: JS detailRegex-->
+            <small id="detailsHelp">Include anything interesting or unusual.
+            </small>
+
+            <!--Form input field: Buttons-->
+            <div class="buttons">
+                <button type="button" id="resetButton">Reset</button>
+                <button type="button" id="saveButton">Log Sighting</button>
+                <button type="button" id="serverSide">See All Logged Sightings</button>
+            </div>
+        </form>
+        <!--End of Form-->
+
+        <!--Messages-->
+        <div id="errorMessages" role="alert" aria-live="polite"></div>
+        <div id="savedData" aria-live="polite"></div>
+    </main>
+    <footer>
+        <address>
+            <p id="photoRights">
+            <a class="bottom_links" href="mailto:grsaraha@sheridancollege.ca">&copy;Sarah-Anne Green 2025</a>
+            - - Background photo curtusy of Pexels.com: from the creative commons.</p>
+        </address>
+    </footer>
+</body>
+</html>
